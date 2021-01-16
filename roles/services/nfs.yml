@@ -1,0 +1,17 @@
+---
+hosts: node1
+
+tasks:
+
+  - name: Set environment variables
+    community.general.docker_swarm_service:
+      name: nfs
+      hostname: nfs
+      image: erichough/nfs-server
+      env: "{{ docker_env_variables.nfs }}"
+      publish: "{{ docker_port_maps.nfs }}"
+      endpoint_mode: dnsrr
+      mounts:
+        source: /nfs
+        target: /mnt
+        type: bind

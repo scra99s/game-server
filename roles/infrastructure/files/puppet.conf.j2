@@ -1,0 +1,14 @@
+[server]
+vardir = /opt/puppetlabs/server/data/puppetserver
+logdir = /var/log/puppetlabs/puppetserver
+rundir = /var/run/puppetlabs/puppetserver
+pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
+codedir = /etc/puppetlabs/code
+
+[master]
+dns_alt_names = {{ inventory_hostname }},{{ inventory_hostname }}.{{ domain }}
+
+[main]
+certname = {{ inventory_hostname }}.{{ domain }}
+server = {{ inventory_hostname }}.{{ domain }}
+environment = {{ environment }}

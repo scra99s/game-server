@@ -1,0 +1,25 @@
+---
+hosts: node1
+
+  tasks:
+
+  - name: Create ragnarok_volume
+    community.general.docker_volume:
+      name: ragnarok_volume
+      driver_options:
+        type: nfs4
+        device: :/ragnarok_volume
+        o: addr=192.168.1.50
+
+  - name: Set environment variables
+    community.general.docker_swarm_service:
+      name: ragnarok
+      hostname: ragnarok
+      image: thmhoag/arkserver
+      env: "{{ docker_env_variables.ragnarok }}"
+      publish: "{{ docker_port_maps.ragnarok }}"
+      endpoint_mode: dnsrr
+      mounts:
+        source: theisland_volume
+        target: /ark
+        type: volume
