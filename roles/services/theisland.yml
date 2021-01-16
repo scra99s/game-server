@@ -1,10 +1,18 @@
 ---
-hosts: node_master
-
+- name: Deploy Ark The Island service
+  hosts: node_master
+  gather_facts: false
   tasks:
 
+  - name: Create a network with options
+    docker_network:
+      name: gaming_overlay
+      driver: overlay
+      driver_options:
+        encrypted: true
+
   - name: Create theisland_volume
-    community.general.docker_volume:
+    docker_volume:
       name: theisland_volume
       driver_options:
         type: nfs4
@@ -12,14 +20,17 @@ hosts: node_master
         o: addr=192.168.1.50
 
   - name: Deploy theisland service
-    community.general.docker_swarm_service:
+    docker_swarm_service:
       name: theisland
       hostname: theisland
       image: thmhoag/arkserver
-      env: "{{ docker_env_variables.the_island }}"
-      publish: "{{ docker_port_maps.the_island }}"
-      endpoint_mode: dnsrr
+      env: "{{ docker_env_variables.theisland }}"
+      networks: gaming_overlay
+      publish: "{{ docker_port_maps.theisland }}"
       mounts:
-        source: theisland_volume
+      - source: theisland_volume
         target: /ark
         type: volume
+      placement:
+        constraints:
+          - node.labels.node == general

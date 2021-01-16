@@ -1,17 +1,25 @@
 ---
-hosts: node_master
+- name: Deploy NFS service
+  hosts: node_master
+  gather_facts: false
+  tasks:
 
-tasks:
-
-  - name: Set environment variables
-    community.general.docker_swarm_service:
+  - name: Deploy NFS service
+    docker_swarm_service:
       name: nfs
       hostname: nfs
       image: erichough/nfs-server
       env: "{{ docker_env_variables.nfs }}"
+      networks: gaming_overlay
       publish: "{{ docker_port_maps.nfs }}"
       endpoint_mode: dnsrr
       mounts:
-        source: /nfs
+      - source: /nfs
         target: /mnt
         type: bind
+      placement:
+        constraints:
+          - node.labels.node == storage
+
+  - name: Add capability to NFS
+    command: docker service update nfs --cap-add SYS_ADMIN

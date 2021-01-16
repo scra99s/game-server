@@ -26,9 +26,7 @@ e2label /dev/vg1/nfsstorage nfsstorage
 echo "/dev/mapper/vg1-nfsstorage /var/lib/docker ext4 defaults 0 0" >> /etc/fstab
 mount -a
 
-
 docker node update --label-add node=storage swarm-storage.jerra.io
 docker node update --label-add node=general swarm-node-1.jerra.io
 docker node update --label-add node=general swarm-node-2.jerra.io
 docker node update --label-add node=general swarm-node-3.jerra.io
-

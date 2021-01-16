@@ -11,24 +11,25 @@
       driver_options:
         encrypted: true
 
-  - name: Create ragnarok_volume
+  - name: Create crystalisles_volume
     docker_volume:
-      name: ragnarok_volume
+      name: crystalisles_volume
       driver_options:
         type: nfs4
-        device: :/ragnarok
+        device: :/crystalisles
         o: addr=192.168.1.50
 
-  - name: Deploy Ark Ragnarok service
+  - name: Deploy Ark Crystal Isles service
     docker_swarm_service:
-      name: ragnarok
-      hostname: ragnarok
+      name: crystalisles 
+      hostname: crystalisles 
       image: thmhoag/arkserver
-      env: "{{ docker_env_variables.ragnarok }}"
+      env: "{{ docker_env_variables.crystalisles  }}"
       networks: gaming_overlay
-      publish: "{{ docker_port_maps.ragnarok }}"
+      publish: "{{ docker_port_maps.crystalisles  }}"
+      endpoint_mode: dnsrr
       mounts:
-      - source: theisland_volume
+      - source: crystalisles_volume
         target: /ark
         type: volume
       placement:
