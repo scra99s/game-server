@@ -1,4 +1,17 @@
 ---
+- name: Deploy Ark Crystal Isles Volumes
+  hosts: all:!node_master
+  gather_facts: false
+  tasks:
+
+  - name: Create crystalisles_volume
+    docker_volume:
+      name: crystalisles_volume
+      driver_options:
+        type: nfs4
+        device: :/crystalisles
+        o: addr=192.168.1.50
+  
 - name: Deploy Ark Ragnarok service
   hosts: node_master
   gather_facts: false
@@ -10,14 +23,6 @@
       driver: overlay
       driver_options:
         encrypted: true
-
-  - name: Create crystalisles_volume
-    docker_volume:
-      name: crystalisles_volume
-      driver_options:
-        type: nfs4
-        device: :/crystalisles
-        o: addr=192.168.1.50
 
   - name: Deploy Ark Crystal Isles service
     docker_swarm_service:

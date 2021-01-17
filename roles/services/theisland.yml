@@ -1,4 +1,17 @@
 ---
+- name: Deploy Ark The Island Volumes
+  hosts: all:!node_master
+  gather_facts: false
+  tasks:
+
+  - name: Create theisland_volume
+    docker_volume:
+      name: theisland_volume
+      driver_options:
+        type: nfs4
+        device: :/theisland
+        o: addr=192.168.1.50
+
 - name: Deploy Ark The Island service
   hosts: node_master
   gather_facts: false
@@ -10,14 +23,6 @@
       driver: overlay
       driver_options:
         encrypted: true
-
-  - name: Create theisland_volume
-    docker_volume:
-      name: theisland_volume
-      driver_options:
-        type: nfs4
-        device: :/theisland
-        o: addr=192.168.1.50
 
   - name: Deploy theisland service
     docker_swarm_service:

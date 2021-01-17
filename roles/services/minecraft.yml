@@ -1,15 +1,8 @@
 ---
-- name: Deploy Ark Ragnarok service
-  hosts: node_master
+- name: Deploy Ark Crystal Isles Volumes
+  hosts: all:!node_master
   gather_facts: false
   tasks:
-
-  - name: Create a network with options
-    docker_network:
-      name: gaming_overlay
-      driver: overlay
-      driver_options:
-        encrypted: true
 
   - name: Create minecraft data volume
     docker_volume:
@@ -26,6 +19,18 @@
         type: nfs4
         device: :/minecraft-mods
         o: addr=192.168.1.50
+
+- name: Deploy Ark Ragnarok service
+  hosts: node_master
+  gather_facts: false
+  tasks:
+
+  - name: Create a network with options
+    docker_network:
+      name: gaming_overlay
+      driver: overlay
+      driver_options:
+        encrypted: true
 
   - name: Deploy Minecraft service
     docker_swarm_service:
