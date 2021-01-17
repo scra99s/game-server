@@ -3,7 +3,7 @@ environment: development
 domain: jerra.io
 
 docker_env_variables:
-  the_island:
+  theisland:
     serverMap: TheIsland
     am_ark_SessionName: "Scrapps The Island Server"
     am_ark_ServerAdminPassword: "{{ enc_server_admin_password }}"
@@ -30,6 +30,8 @@ docker_env_variables:
     am_ark_Port: "7782"
     am_ark_RCONPort: "32332"
     am_arkwarnminutes: "60"
+  minecraft:
+    EULA: "TRUE"
   nfs:
     NFS_EXPORT_0: "/mnt                 *(rw,fsid=0,no_root_squash,no_subtree_check)"
     NFS_EXPORT_1: "/mnt/theisland       *(rw,no_root_squash,no_subtree_check)"
@@ -63,6 +65,8 @@ docker_port_maps:
     - { published_port: 27017, target_port: 27017, protocol: tcp }
     - { published_port: 27017, target_port: 27017, protocol: udp }
     - { published_port: 32332, target_port: 32332, protocol: tcp }
+  minecraft:
+    - { published_port: 25565, target_port: 25565, protocol: tcp }
   nfs:
     - { published_port: 111, target_port: 111, protocol: tcp, mode: host }
     - { published_port: 111, target_port: 111, protocol: udp, mode: host }

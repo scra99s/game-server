@@ -28,7 +28,7 @@
       networks: gaming_overlay
       publish: "{{ docker_port_maps.ragnarok }}"
       mounts:
-      - source: theisland_volume
+      - source: ragnarok_volume
         target: /ark
         type: volume
       placement:

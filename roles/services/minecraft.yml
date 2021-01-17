@@ -1,0 +1,47 @@
+---
+- name: Deploy Ark Ragnarok service
+  hosts: node_master
+  gather_facts: false
+  tasks:
+
+  - name: Create a network with options
+    docker_network:
+      name: gaming_overlay
+      driver: overlay
+      driver_options:
+        encrypted: true
+
+  - name: Create minecraft data volume
+    docker_volume:
+      name: minecraft_data_volume
+      driver_options:
+        type: nfs4
+        device: :/minecraft-data
+        o: addr=192.168.1.50
+
+  - name: Create minecraft mods volume
+    docker_volume:
+      name: minecraft_mods_volume
+      driver_options:
+        type: nfs4
+        device: :/minecraft-mods
+        o: addr=192.168.1.50
+
+  - name: Deploy Minecraft service
+    docker_swarm_service:
+      name: minecraft
+      hostname: minecraft
+      image: itzg/minecraft-server
+      env: "{{ docker_env_variables.minecraft }}"
+      networks: gaming_overlay
+      publish: "{{ docker_port_maps.minecraft }}"
+      mounts:
+      - source: minecraft_data_volume
+        target: /data
+        type: volume
+      - source: minecraft_mods_volume
+        target: /modpacks
+        type: volume
+      placement:
+        constraints:
+          - node.labels.node == general

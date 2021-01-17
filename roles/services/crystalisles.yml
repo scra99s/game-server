@@ -27,7 +27,6 @@
       env: "{{ docker_env_variables.crystalisles  }}"
       networks: gaming_overlay
       publish: "{{ docker_port_maps.crystalisles  }}"
-      endpoint_mode: dnsrr
       mounts:
       - source: crystalisles_volume
         target: /ark
