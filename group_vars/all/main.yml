@@ -5,6 +5,7 @@ domain: jerra.io
 docker_env_variables:
   theisland:
     serverMap: TheIsland
+    am_serverMap: TheIsland
     am_ark_SessionName: "Scrapps The Island Server"
     am_ark_ServerAdminPassword: "{{ enc_server_admin_password }}"
     am_ark_MaxPlayers: "10"
@@ -14,6 +15,7 @@ docker_env_variables:
     am_arkwarnminutes: "60"
   ragnarok:
     serverMap: Ragnarok
+    am_serverMap: Ragnarok
     am_ark_SessionName: "Scrapps Ragnarok Server"
     am_ark_ServerAdminPassword: "{{ enc_server_admin_password }}"
     am_ark_MaxPlayers: "10"
@@ -23,6 +25,7 @@ docker_env_variables:
     am_arkwarnminutes: "60"
   crystalisles:
     serverMap: CrystalIsles
+    am_serverMap: CrystalIsles
     am_ark_SessionName: "Scrapps Crystal Isles Server"
     am_ark_ServerAdminPassword: "{{ enc_server_admin_password }}"
     am_ark_MaxPlayers: "10"

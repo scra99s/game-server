@@ -1,5 +1,6 @@
 ---
-- import_playbook: roles/services/nfs.yml
+#- import_playbook: roles/services/nfs.yml
 - import_playbook: roles/services/ragnarok.yml
 - import_playbook: roles/services/theisland.yml
 - import_playbook: roles/services/crystalisles.yml
+#- import_playbook: roles/services/minecraft.yml
