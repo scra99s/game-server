@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Ark Ragnarok</short>
+  <port port="7780" protocol="tcp"/>
+  <port port="7780" protocol="udp"/>
+  <port port="7779" protocol="tcp"/>
+  <port port="7779" protocol="udp"/>
+  <port port="27016" protocol="tcp"/>
+  <port port="27016" protocol="udp"/>
+  <port port="32331" protocol="tcp"/>
+</service>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <zone>
   <service name="ssh"/>
+  <service name="cockpit"/>
   <service name="docker-swarm"/>
 </zone>

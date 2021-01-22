@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<zone>
+  <service name="ssh"/>
+  <service name="docker-swarm"/>
+  <service name="cockpit"/>
+  <service name="ark-crystalisles"/>
+  <service name="ark-ragnarok"/>
+  <service name="ark-theisland"/>
+  <service name="minecraft"/>
+  <service name="nfs"/>
+</zone>

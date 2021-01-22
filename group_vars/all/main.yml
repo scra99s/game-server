@@ -7,7 +7,7 @@ docker_env_variables:
     serverMap: TheIsland
     am_serverMap: TheIsland
     am_ark_SessionName: "Scrapps The Island Server"
-    am_ark_ServerAdminPassword: "{{ enc_server_admin_password }}"
+    am_ark_ServerAdminPassword: password
     am_ark_MaxPlayers: "10"
     am_ark_QueryPort: "27015"
     am_ark_Port: "7778"
@@ -17,7 +17,7 @@ docker_env_variables:
     serverMap: Ragnarok
     am_serverMap: Ragnarok
     am_ark_SessionName: "Scrapps Ragnarok Server"
-    am_ark_ServerAdminPassword: "{{ enc_server_admin_password }}"
+    am_ark_ServerAdminPassword: password
     am_ark_MaxPlayers: "10"
     am_ark_QueryPort: "27016"
     am_ark_Port: "7780"
@@ -27,7 +27,7 @@ docker_env_variables:
     serverMap: CrystalIsles
     am_serverMap: CrystalIsles
     am_ark_SessionName: "Scrapps Crystal Isles Server"
-    am_ark_ServerAdminPassword: "{{ enc_server_admin_password }}"
+    am_ark_ServerAdminPassword: password
     am_ark_MaxPlayers: "10"
     am_ark_QueryPort: "27017"
     am_ark_Port: "7782"

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Ark Crystal Isles</short>
+  <port port="7782" protocol="tcp"/>
+  <port port="7782" protocol="udp"/>
+  <port port="7781" protocol="tcp"/>
+  <port port="7781" protocol="udp"/>
+  <port port="27017" protocol="tcp"/>
+  <port port="27017" protocol="udp"/>
+  <port port="32332" protocol="tcp"/>
+</service>
